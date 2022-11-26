@@ -6,8 +6,7 @@
 class Array {
     private:
         char *data;
-        int maxSize;
-        int currentSize;
+        int size;
 
     public:
         // constructors and destructor
@@ -18,10 +17,8 @@ class Array {
         // ~Array ();
 
         // getters and setters
-        void setMaxSize (int maxSize);
-        void setCurrentSize (int currentSize);
-        int getMaxSize ();
-        int getCurrentSize ();
+        void setSize (int size);
+        int getSize ();
 
         // operators
         const Array& operator = (const Array& rhs);
@@ -31,16 +28,16 @@ class Array {
         const char& operator [] (int index) const;
 
         // other methods
-        char getCharacter(int index) const;
-        void setCharacter(int index, char value);
-        void resize(int new_size);
-        void shrink();
-        int find(char character) const;
-        int find(char character, int start) const;
-        void fill(char character);
-        void reverse(void);
-        Array slice(int begin) const;
-        Array slice(int begin, int end) const;
+        char getCharacter (int index) const;
+        void setCharacter (int index, char value);
+        void resize (int newSize);
+        int find (char character) const;
+        int find (char character, int start) const;
+        void fill (char character);
+        void reverse (void);
+        void slice (int begin); // takes the begin index, the index is included
+        void slice (int begin, int end); // takes the begin and end indexes, they are both included
+        void print ();
 };
 
 #endif
