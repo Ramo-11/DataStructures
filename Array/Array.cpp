@@ -41,6 +41,50 @@ int Array::getSize () {
     return size;
 }
 
+const Array& Array::operator = (const Array& rhs) {
+    size = rhs.size;
+    delete data;
+    data = new char[size];
+
+    for (int i = 0; i < size; i++) {
+        data[i] = rhs.data[i];
+    }
+    
+    return rhs;
+}
+
+bool Array::operator == (const Array& rhs) const {
+    if (rhs.size != size) {
+        return false;
+    }
+
+    for (int i = 0; i < size; i++) {
+        if (data[i] != rhs.data[i]) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+bool Array::operator != (const Array& rhs) const {
+    return !(*this == rhs);
+}
+
+char& Array::operator [] (int index) {
+    if (index >= size) {
+        throw std::out_of_range("out of range");
+    }
+    return data[index];
+}
+
+const char& Array::operator [] (int index) const {
+    if (index >= size) {
+        throw std::out_of_range("out of range");
+    }
+    return data[index];
+}
+
 char Array::getCharacter (int index) const {
     return data[index];
 }
@@ -49,8 +93,33 @@ void Array::setCharacter(int index, char value) {
     data[index] = value;
 }
 
-void Array::resize(int newSize) {
-    
+void Array::resize(int newSize) { 
+    if (newSize < 0) {
+        throw std::runtime_error("Cannot have a size of less than zero");
+    }
+
+    if (newSize < size) {
+        char *newData = new char[newSize];
+
+        for (int i = 0; i < newSize; i++) {
+            newData[i] = data[i];
+        }
+
+        delete data;
+        data = new char[newSize];
+
+        for (int i = 0; i < newSize; i++) {
+            data[i] = newData[i];
+        }
+
+        delete newData;
+        size = newSize;
+    } else {
+        for (int i = size; i < newSize; i++) {
+            data[i] = '0';
+        }
+        size = newSize;
+    }
 }
 
 int Array::find(char character) const {
