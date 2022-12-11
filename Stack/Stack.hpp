@@ -14,11 +14,6 @@ class Stack {
         Stack ();
         Stack (int initialSize);
         Stack (const Stack& stackToCopy);
-        // ~Stack ();
-
-        // getters and setters
-        void setSize (int size);
-        int getSize ();
 
         // operators
         Stack& operator = (Stack& rhs);

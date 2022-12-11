@@ -25,16 +25,6 @@ Stack::Stack (const Stack& stackToCopy) {
     }
 }
 
-// ~Stack ();
-
-void Stack::setSize (int size) {
-    this->size = size;
-}
-
-int Stack::getSize () {
-    return this->size;
-}
-
 Stack& Stack::operator = (Stack& rhs) {
     this->top = rhs.top;
     this->size = rhs.size;
