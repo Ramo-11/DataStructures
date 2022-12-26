@@ -41,6 +41,7 @@
         "xfacet": "cpp",
         "xiosbase": "cpp",
         "xlocnum": "cpp",
-        "xstddef": "cpp"
+        "xstddef": "cpp",
+        "array": "cpp"
     }
 }
