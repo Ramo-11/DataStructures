@@ -3,17 +3,17 @@
 
 #include <iostream>
 
-class Node {
+class SinglyNode {
     public:
         // Default constructor
-        Node ();
-        Node (char d);
+        SinglyNode ();
+        SinglyNode (char d);
 
         void setData (char d);
         char getData ();
         void printNode ();
 
-        Node* next;
+        SinglyNode* next;
         char data;
 };
 

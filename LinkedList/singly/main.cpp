@@ -3,13 +3,19 @@
 int main () {
     LinkedList list;
 
-    list.insertNode('o');
-    list.insertNode('m');
-    list.insertNode('a');
-    list.insertNode('r');
-    list.insertNode('o');
-
+    list.push('o');
+    list.push('m');
+    list.push('a');
+    list.push('r');
     list.print ();
+    list.insertAfter(list.getHead(), 'o');
+    list.append('r');
+    list.append('r');
+    list.append('r');
+    list.append('r');
+    list.append('k');
+
+    list.print();
 
     if(list.elementExists('r')) {
         std::cout << "element [r] does exist in the linked list\n";

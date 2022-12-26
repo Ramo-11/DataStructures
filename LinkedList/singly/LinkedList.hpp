@@ -3,20 +3,28 @@
 
 #include <iostream>
 
-#include "Node.hpp"
+#include "SinglyNode.hpp"
 
 class LinkedList {
     private:
-        Node* head;
+        SinglyNode* head;
 
     public:
         LinkedList ();
-    
+
+        // inserts node in the beginning of the linkedlist
+        void push (char d);
+
         // inserts node in the end of the linkedlist
-        void insertNode (char d);
+        void insertAfter (SinglyNode* node, char d);
+
+        // inserts node in the end of the linkedlist
+        void append (char d);
 
         // deletes all nodes with matching char
         void deleteNode (char d);
+
+        SinglyNode* getHead ();
 
         bool elementExists (char d);
         void print ();

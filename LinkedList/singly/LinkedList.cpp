@@ -3,12 +3,29 @@
 LinkedList::LinkedList () 
 : head(nullptr) { }
     
-void LinkedList::insertNode (char d) {
-    Node* newNode = new Node(d);
+void LinkedList::push (char d) {
+    SinglyNode* newNode = new SinglyNode(d);
+ 
+    newNode->next = head;
+    head = newNode;
+}
+
+void LinkedList::insertAfter (SinglyNode* node, char d) {
+    if (node == NULL) {
+        std::cout << "Cannot insert a new node after a null node";
+        return;
+    }
+    SinglyNode* newNode = new SinglyNode(d);
+    newNode->next = node->next;
+    node->next = newNode;
+}
+
+void LinkedList::append (char d) {
+    SinglyNode* newNode = new SinglyNode(d);
     if (head == nullptr) {
         head = newNode;
     } else {
-        Node* pointer = head;
+        SinglyNode* pointer = head;
         while(pointer->next != nullptr) {
              pointer = pointer->next;
         }
@@ -24,13 +41,13 @@ void LinkedList::deleteNode (char d) {
         }
 
         if (head->getData() == d) {
-            Node* pointer = head;
+            SinglyNode* pointer = head;
             head = head->next;
             delete pointer;
             std::cout << "Element [" << d << "] has been deleted from the linked list\n";
         } else {
-            Node* pointer = head;
-            Node* previous = head;
+            SinglyNode* pointer = head;
+            SinglyNode* previous = head;
 
             while (pointer != nullptr) {
                 if (pointer->getData() == d) {
@@ -47,8 +64,12 @@ void LinkedList::deleteNode (char d) {
     }
 }
 
+SinglyNode* LinkedList::getHead () {
+    return this->head;
+}
+
 bool LinkedList::elementExists (char d) {
-    Node* pointer = head;
+    SinglyNode* pointer = head;
     while (pointer != nullptr) {
         if (pointer->getData() == d) {
             return true;
@@ -59,7 +80,7 @@ bool LinkedList::elementExists (char d) {
 }
 
 void LinkedList::print () {
-    Node* pointer = head;
+    SinglyNode* pointer = head;
 
     while(pointer != nullptr) {
         std::cout << pointer->getData();
