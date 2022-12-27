@@ -26,7 +26,10 @@ class LinkedList {
 
         SinglyNode* getHead ();
 
+        void reverse ();
+
         bool elementExists (char d);
+        
         void print ();
 };
 

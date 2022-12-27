@@ -8,6 +8,10 @@ int main () {
     list.push('a');
     list.push('r');
     list.print ();
+    list.reverse ();
+    std::cout << "List after reversing: "; 
+    list.print ();
+
     list.insertAfter(list.getHead(), 'o');
     list.append('r');
     list.append('r');

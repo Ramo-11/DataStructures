@@ -25,11 +25,11 @@ void LinkedList::append (char d) {
     if (head == nullptr) {
         head = newNode;
     } else {
-        SinglyNode* pointer = head;
-        while(pointer->next != nullptr) {
-             pointer = pointer->next;
+        SinglyNode* current = head;
+        while(current->next != nullptr) {
+             current = current->next;
         }
-        pointer->next = newNode;
+        current->next = newNode;
     }
 }
 
@@ -41,23 +41,23 @@ void LinkedList::deleteNode (char d) {
         }
 
         if (head->getData() == d) {
-            SinglyNode* pointer = head;
+            SinglyNode* current = head;
             head = head->next;
-            delete pointer;
+            delete current;
             std::cout << "Element [" << d << "] has been deleted from the linked list\n";
         } else {
-            SinglyNode* pointer = head;
+            SinglyNode* current = head;
             SinglyNode* previous = head;
 
-            while (pointer != nullptr) {
-                if (pointer->getData() == d) {
-                    previous->next = pointer->next;
-                    pointer = nullptr;
+            while (current != nullptr) {
+                if (current->getData() == d) {
+                    previous->next = current->next;
+                    current = nullptr;
                     std::cout << "Element [" << d << "] has been deleted from the linked list\n";
                 }
                 else {
-                    previous = pointer;
-                    pointer = pointer->next;
+                    previous = current;
+                    current = current->next;
                 }
             }     
         }
@@ -68,26 +68,45 @@ SinglyNode* LinkedList::getHead () {
     return this->head;
 }
 
+void LinkedList::reverse () {
+    if (head == nullptr || head->next == nullptr) {
+        std::cout << "Cannot reverse linked list, it doesn't contain enough elements\n";
+        return;
+    } 
+
+    SinglyNode* current = head;
+    SinglyNode* nextNode = nullptr;
+    SinglyNode* previousNode = nullptr;
+
+    while (current != nullptr) {
+        nextNode = current->next;
+        current->next = previousNode;
+        previousNode = current;
+        current = nextNode;
+    }
+    head = previousNode;
+}
+
 bool LinkedList::elementExists (char d) {
-    SinglyNode* pointer = head;
-    while (pointer != nullptr) {
-        if (pointer->getData() == d) {
+    SinglyNode* current = head;
+    while (current != nullptr) {
+        if (current->getData() == d) {
             return true;
         }
-        pointer = pointer->next;
+        current = current->next;
     }
     return false;
 }
 
 void LinkedList::print () {
-    SinglyNode* pointer = head;
+    SinglyNode* current = head;
 
-    while(pointer != nullptr) {
-        std::cout << pointer->getData();
-        if (pointer->next != nullptr) {
+    while(current != nullptr) {
+        std::cout << current->getData();
+        if (current->next != nullptr) {
             std::cout << " -> ";
         }   
-        pointer = pointer->next;
+        current = current->next;
     }
     std::cout << "\n";
 }
